@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import * as yup from 'yup';
+import ICidade from '../../database/models/Cidade';
 
 import { validation } from '../../shared/middleware';
 
 
-interface ICidade {
-  nome: string;
-}
+// Omit -> Serve para omitir uma propriedade ou campo...
+interface IBodyProps extends Omit<ICidade, "id"> {}
+
 export const createValidation = validation((getSchema) => ({
-  body: getSchema<ICidade>(yup.object().shape({
+  body: getSchema<IBodyProps>(yup.object().shape({
     nome: yup.string().required().min(3),
   })),
 }));

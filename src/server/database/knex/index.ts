@@ -5,7 +5,7 @@ import { development,  production, test } from "./Environment"
 const getEnvironment = ()=>{
 
 switch (process.env.Node_env) {
-    case "production": return development 
+    case "production": return production 
     case "test": return test 
     default: return development
 }
